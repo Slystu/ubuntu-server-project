@@ -46,7 +46,13 @@ Summary of steps followed
    - I pasted the public key content into .ssh/authorized_keys
    - Set specific permissions on the authorised key file and .ssh directory: chmod 700 .ssh ; chmod 644 .ssh/authorized_keys
 9. Configure the local timezone to UTC: sudo timedatectl set-timezone Etc/UTC. I checked it using the 'date' command
-10. 
+10. Install and configure Apache2
+ - sudo apt-get install apache2
+ - Tested that the web server up and running by navigating my browser to http://35.177.47.196.xip.io/
+ - sudo apt-get install libapache2-mod_wsgi
+ - Edit 000-defauly.conf doc: Add 'WSGIScriptAlias / /var/www/html/myapp.wsgi' before </VirtualHost>
+ - restart apache: sudo apache2ctl restart
+
 
 
 3rd party sources used:
