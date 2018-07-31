@@ -34,8 +34,14 @@ Summary of steps followed
  - Followed AWS steps on creating a static IP and installing PuTTy so that I can access my virtual machine from my terminal
  - Rebooted my VM <-- Very important as I was not being permitted access using Putty until I rebooted
 6. Create a new user account called Grader: sudo adduser grader
- - Password udacity
-7. Give grader permission to sudo
+7. Give grader permission to sudo: sudo usermod -aG grader
+ - Expired graders password using sudo passwd -e grader
+8. Create an SSH keypair for the grader
+ - on local machine: ssh-keygen <-- I chose a location to store it in and set a passphrase
+ - log in as grader on VM: su - grader
+  - mkdir .ssh
+  - touch .ssh/authorized keys
+ - Back on local machine: 
 
 
 
@@ -43,3 +49,4 @@ Summary of steps followed
 For instructions on how to change the SSH port from 22 to 2200 I used https://www.liquidweb.com/kb/changing-the-ssh-port/
 I read a guide on how to allow NTP incoming traffic through the UFW here https://www.digitalocean.com/community/tutorials/how-to-configure-ntp-for-use-in-the-ntp-pool-project-on-ubuntu-16-04
 AWS Lightsail steps on downloading and using PuTTY to SSH into my server https://lightsail.aws.amazon.com/ls/docs/en/articles/lightsail-how-to-set-up-putty-to-connect-using-ssh
+How to add a sudo user: https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart
