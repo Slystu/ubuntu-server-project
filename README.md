@@ -39,10 +39,14 @@ Summary of steps followed
 8. Create an SSH keypair for the grader
  - on local machine: ssh-keygen <-- I chose a location to store it in and set a passphrase
  - log in as grader on VM: su - grader
-  - mkdir .ssh
-  - touch .ssh/authorized keys
- - Back on local machine: 
-
+   - mkdir .ssh
+   - touch .ssh/authorized_keys
+ - Back on local machine I read and copied the public key: type .ssh/linuxCourseProject.pub
+ - On grader on the linux machine: 
+   - I pasted the public key content into .ssh/authorized_keys
+   - Set specific permissions on the authorised key file and .ssh directory: chmod 700 .ssh ; chmod 644 .ssh/authorized_keys
+9. Configure the local timezone to UTC: sudo timedatectl set-timezone Etc/UTC. I checked it using the 'date' command
+10. 
 
 
 3rd party sources used:
@@ -50,3 +54,4 @@ For instructions on how to change the SSH port from 22 to 2200 I used https://ww
 I read a guide on how to allow NTP incoming traffic through the UFW here https://www.digitalocean.com/community/tutorials/how-to-configure-ntp-for-use-in-the-ntp-pool-project-on-ubuntu-16-04
 AWS Lightsail steps on downloading and using PuTTY to SSH into my server https://lightsail.aws.amazon.com/ls/docs/en/articles/lightsail-how-to-set-up-putty-to-connect-using-ssh
 How to add a sudo user: https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart
+To change my timezone to UTC I used https://askubuntu.com/questions/138423/how-do-i-change-my-timezone-to-utc-gmt
