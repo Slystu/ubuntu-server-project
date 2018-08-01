@@ -64,8 +64,10 @@ Summary of steps followed
    !!!NB!!! I haven't yet limited permissions so the catalog user access only to my catalog app database
 12. Installed git: sudo apt-get install git
 13. Cloned project into the home folder of grader: git clone https://github.com/Slystu/stuarts-astro-page.git
- - To get my project to work I've had to isntall sqlalchemy: sudo apt-get install python-flask-sqlalchemy
-   
+ - To get my project to work I've had to install sqlalchemy: sudo apt-get install python-flask-sqlalchemy
+ - install oath2: git clone https://github.com/google/oauth2client then cd oauth2client then python setup.py install
+ - Install pip: sudo apt-get install python-pip
+ - Install Requests: pip install requests --user
 
 
 3rd party sources used:
@@ -77,3 +79,5 @@ To change my timezone to UTC I used https://askubuntu.com/questions/138423/how-d
 For securing Postgresql I used this resource: https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps
 git installation: https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04
 Installing sqlalchemy: https://www.devmanuals.net/install/ubuntu/ubuntu-16-04-LTS-Xenial-Xerus/how-to-install-python-flask-sqlalchemy.html
+Installing oauth2client https://oauth2client.readthedocs.io/en/latest/
+Installing requests: http://docs.python-requests.org/en/v2.7.0/user/install/
