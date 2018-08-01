@@ -57,9 +57,15 @@ Summary of steps followed
  - Confirmed that only local connections are allowed by looking in pg_hba.conf: sudo nano /etc/postgresql/9.5/main/pg_hba.conf
  - created a new databse user called 'catalog' with permissions to my catalog application database
    - login to PSQL: sudo -u postgres psql
-   - set password for user ALTER USER postgres PASSWORD [newpword]
-   - exited psql and logged back in: '\q' then 'psql -u postgres -h localhost' and my password
-   - created the new user called catalog: CREATE USER catalog with PASSWORD [password]
+   - set password for user ALTER USER postgres PASSWORD '[password]';
+   - exited psql and logged back in: '\q' then 'psql -U postgres -h localhost' and my password
+   - created the new user called catalog: CREATE USER catalog with PASSWORD '[password]';
+   - logged out of psql '\q' and logged back in as catalog user 'psql -U postgres -h localhost' and my password
+   !!!NB!!! I haven't yet limited permissions so the catalog user access only to my catalog app database
+12. Installed git: sudo apt-get install git
+13. Cloned project into the home folder of grader: git clone https://github.com/Slystu/stuarts-astro-page.git
+ - To get my project to work I've had to isntall sqlalchemy: sudo apt-get install python-flask-sqlalchemy
+   
 
 
 3rd party sources used:
@@ -69,3 +75,5 @@ AWS Lightsail steps on downloading and using PuTTY to SSH into my server https:/
 How to add a sudo user: https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart
 To change my timezone to UTC I used https://askubuntu.com/questions/138423/how-do-i-change-my-timezone-to-utc-gmt
 For securing Postgresql I used this resource: https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps
+git installation: https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04
+Installing sqlalchemy: https://www.devmanuals.net/install/ubuntu/ubuntu-16-04-LTS-Xenial-Xerus/how-to-install-python-flask-sqlalchemy.html
