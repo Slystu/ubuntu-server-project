@@ -52,7 +52,14 @@ Summary of steps followed
  - sudo apt-get install libapache2-mod_wsgi
  - Edit 000-defauly.conf doc: Add 'WSGIScriptAlias / /var/www/html/myapp.wsgi' before </VirtualHost>
  - restart apache: sudo apache2ctl restart
-
+11. Installed adn configured Postgresql:
+ - sudo apt-get install postgresql
+ - Confirmed that only local connections are allowed by looking in pg_hba.conf: sudo nano /etc/postgresql/9.5/main/pg_hba.conf
+ - created a new databse user called 'catalog' with permissions to my catalog application database
+   - login to PSQL: sudo -u postgres psql
+   - set password for user ALTER USER postgres PASSWORD [newpword]
+   - exited psql and logged back in: '\q' then 'psql -u postgres -h localhost' and my password
+   - created the new user called catalog: CREATE USER catalog with PASSWORD [password]
 
 
 3rd party sources used:
@@ -61,3 +68,4 @@ I read a guide on how to allow NTP incoming traffic through the UFW here https:/
 AWS Lightsail steps on downloading and using PuTTY to SSH into my server https://lightsail.aws.amazon.com/ls/docs/en/articles/lightsail-how-to-set-up-putty-to-connect-using-ssh
 How to add a sudo user: https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart
 To change my timezone to UTC I used https://askubuntu.com/questions/138423/how-do-i-change-my-timezone-to-utc-gmt
+For securing Postgresql I used this resource: https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps
