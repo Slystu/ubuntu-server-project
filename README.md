@@ -48,11 +48,11 @@ Summary of steps followed
 9. Configure the local timezone to UTC: sudo timedatectl set-timezone Etc/UTC. I checked it using the 'date' command
 10. Install and configure Apache2
  - sudo apt-get install apache2
- - Tested that the web server up and running by navigating my browser to http://35.177.47.196.xip.io/
+ - Tested that the web server is up and running by navigating my browser to http://35.177.47.196.xip.io/
  - sudo apt-get install libapache2-mod_wsgi
  - Edit 000-defauly.conf doc: Add 'WSGIScriptAlias / /var/www/html/myapp.wsgi' before </VirtualHost>
  - restart apache: sudo apache2ctl restart
-11. Installed adn configured Postgresql:
+11. Installed and configured Postgresql:
  - sudo apt-get install postgresql
  - Confirmed that only local connections are allowed by looking in pg_hba.conf: sudo nano /etc/postgresql/9.5/main/pg_hba.conf
  - created a new databse user called 'catalog' with permissions to my catalog application database
@@ -67,7 +67,9 @@ Summary of steps followed
  - To get my project to work I've had to install sqlalchemy: sudo apt-get install python-flask-sqlalchemy
  - install oath2: git clone https://github.com/google/oauth2client then cd oauth2client then python setup.py install
  - Install pip: sudo apt-get install python-pip
- - Install Requests: pip install requests --user
+ - Install Requests: sudo apt-get install python-requests
+ - Install httplib2: sudo apt-get install python-httplib2
+ - Edited paths in my application.wsgi file so that import of database_setup will work
 
 
 3rd party sources used:
@@ -80,4 +82,6 @@ For securing Postgresql I used this resource: https://www.digitalocean.com/commu
 git installation: https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04
 Installing sqlalchemy: https://www.devmanuals.net/install/ubuntu/ubuntu-16-04-LTS-Xenial-Xerus/how-to-install-python-flask-sqlalchemy.html
 Installing oauth2client https://oauth2client.readthedocs.io/en/latest/
-Installing requests: http://docs.python-requests.org/en/v2.7.0/user/install/
+Installing requests: https://www.youtube.com/watch?v=weoYbFaq1-s
+installing httplib2: https://stackoverflow.com/questions/1882465/python-httplib2-module-not-found
+Editing paths in python: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder
