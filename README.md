@@ -60,7 +60,7 @@ Summary of steps followed
    - set password for user ALTER USER postgres PASSWORD '[password]';
    - exited psql and logged back in: '\q' then 'psql -U postgres -h localhost' and my password
    - created the new user called catalog: CREATE USER catalog with PASSWORD '[password]';
-   - logged out of psql '\q' and logged back in as catalog user 'psql -U postgres -h localhost' and my password
+   - logged out of psql '\q' and logged back in as catalog user 'psql -U catalog -h localhost' and my password
    !!!NB!!! I haven't yet limited permissions so the catalog user access only to my catalog app database
 12. Installed git: sudo apt-get install git
 13. Cloned project into the home folder of grader: git clone https://github.com/Slystu/stuarts-astro-page.git
@@ -70,7 +70,12 @@ Summary of steps followed
  - Install Requests: sudo apt-get install python-requests
  - Install httplib2: sudo apt-get install python-httplib2
  - Edited paths in my application.wsgi file so that import of database_setup will work
+ - Altered the create engine url to support postgres (in database_setup and application.wsgi files)
+   - used to be: engine = create_engine('sqlite:///catalogapp.db')
+   - now engine = create_engine('postgresql://catalog:password@localhost/catalogapp.db')
+ - Install psycopg2: sudo apt-get install python-psycopg2
 
+Installed psycopg2
 
 3rd party sources used:
 For instructions on how to change the SSH port from 22 to 2200 I used https://www.liquidweb.com/kb/changing-the-ssh-port/
