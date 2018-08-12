@@ -50,7 +50,7 @@ Summary of steps followed
  - sudo apt-get install apache2
  - Tested that the web server is up and running by navigating my browser to http://35.177.47.196.xip.io/
  - sudo apt-get install libapache2-mod_wsgi
- - Edit 000-defauly.conf doc: Add 'WSGIScriptAlias / /var/www/html/myapp.wsgi' before </VirtualHost>
+ - Edit 000-defauly.conf doc: Add 'WSGIScriptAlias / /var/www/html/stuarts-astro-page/astroapp.wsgi' before </VirtualHost>
  - restart apache: sudo apache2ctl restart
 11. Installed and configured Postgresql:
  - sudo apt-get install postgresql
@@ -70,12 +70,15 @@ Summary of steps followed
  - Install Requests: sudo apt-get install python-requests
  - Install httplib2: sudo apt-get install python-httplib2
  - Edited paths in my application.wsgi file so that import of database_setup will work
- - Altered the create engine url to support postgres (in database_setup and application.wsgi files)
+ - Altered the create engine url to support postgres (in database_setup and application.py files)
    - used to be: engine = create_engine('sqlite:///catalogapp.db')
    - now engine = create_engine('postgresql://catalog:password@localhost/catalogapp.db')
  - Install psycopg2: sudo apt-get install python-psycopg2
-
-Installed psycopg2
+ - created astroapp.wsgi and imported my app as application: from application import app as application
+ 
+ Updated Google oauth Client ID:
+  - Added redirect server and new authorized javascript origin
+  - downloaded updated client_secrets.json file and replaced the previous version
 
 3rd party sources used:
 For instructions on how to change the SSH port from 22 to 2200 I used https://www.liquidweb.com/kb/changing-the-ssh-port/
