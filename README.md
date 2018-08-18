@@ -74,6 +74,7 @@ Summary of steps followed
    - used to be: engine = create_engine('sqlite:///catalogapp.db')
    - now engine = create_engine('postgresql://catalog:password@localhost/catalogapp.db')
  - Install psycopg2: sudo apt-get install python-psycopg2
+ - imported psycopg2 into my application.py file: import psycopg2
  - created astroapp.wsgi and imported my app as application: from application import app as application
  
  Updated Google oauth Client ID:
