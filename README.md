@@ -10,6 +10,7 @@ Static IP address: 35.177.47.196
 SSH port: 2200
 
 Summary of steps followed
+NB note: After weeks of trying I am unable to get the login journey to work correctly. The issue seems to be caused by this line: login_session['state'] = state. I have therefore commented out this line in var/www/html/stuarts-astro-page/application.py to at least show that the site correctly connects with Google using the correct OAuth information
 1. Set up a lightsail ubuntu serer with an IP address of 18.130.129.12
 2. I SSH'd into my new server
 3. I updated all currently installed packages using 'sudo apt-get update' and then 'sudo apt-get upgrade'
@@ -54,8 +55,7 @@ Summary of steps followed
    - set password for user ALTER USER postgres PASSWORD '[password]';
    - exited psql and logged back in: '\q' then 'psql -U postgres -h localhost' and my password
    - created the new user called catalog: CREATE USER catalog with PASSWORD '[password]';
-   - logged out of psql '\q' and logged back in as catalog user 'psql -U catalog -h localhost' and my password
-   !!!NB!!! I haven't yet limited permissions so the catalog user access only to my catalog app database
+   - logged out of psql '\q' and logged back in as catalog user ' psql catalogapp -U catalog -h localhost' and my password
 12. Installed git: sudo apt-get install git
 13. Cloned project into the home folder of grader: git clone https://github.com/Slystu/stuarts-astro-page.git
  - My project files are located at: var/www/html/stuarts-astro-page
