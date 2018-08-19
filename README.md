@@ -1,21 +1,13 @@
 # ubuntu-server-project
 Project for Udacity Linux Server Course for FSND
-Submission
-Please follow these steps to properly submit this project:
-
-Create a new GitHub repository and add a file named README.md.
-
-Your README.md file should include all of the following:
-i. The IP address and SSH port so your server can be accessed by the reviewer.
-ii. The complete URL to your hosted web application.
-iii. A summary of software you installed and configuration changes made.
-iv. A list of any third-party resources you made use of to complete this project.
 
 Locate the SSH key you created for the grader user.
-
 During the submission process, paste the contents of the grader user's SSH key into the "Notes to Reviewer" field.
 
-A README file is included in the GitHub repo containing the following information: IP address, URL, summary of software installed, summary of configurations made, and a list of third-party resources used to complete this project.
+
+URL: http://35.177.47.196.xip.io/
+Static IP address: 35.177.47.196
+SSH port: 2200
 
 Summary of steps followed
 1. Set up a lightsail ubuntu serer with an IP address of 18.130.129.12
@@ -30,7 +22,6 @@ Summary of steps followed
     sudo ufw allow 123/udp
  - Allow all outgoing traffic: sudo ufw default allow outgoing
  - Enabled the firewall sudo ufw enable
- !!!NB!!! GO BACK TO AWS LIGHTSAIL NETWORKING TABA DN CHECK THAT THE FIREWALL SETTINGS ARE STILL CORRECTLY APPLIED (I.E. PORT 22 SHOULD BE DISABLED)
  - Followed AWS steps on creating a static IP and installing PuTTy so that I can access my virtual machine from my terminal
  - Rebooted my VM <-- Very important as I was not being permitted access using Putty until I rebooted
 6. Create a new user account called Grader: sudo adduser grader
@@ -45,12 +36,15 @@ Summary of steps followed
  - On grader on the linux machine: 
    - I pasted the public key content into .ssh/authorized_keys
    - Set specific permissions on the authorised key file and .ssh directory: chmod 700 .ssh ; chmod 644 .ssh/authorized_keys
+   - Removed the ability to remotely login as root: in /etc/ssh/sshd_config I changed PermitRootLogin from being 'prohibit-password' to 'no'. I then restarted the service: sudo service ssh restart
+   - Gave grader the ability to sudo without having to enter a sudo password: 'sudo visudo' and added the following: grader ALL=(ALL) NOPASSWD:ALL
+   - Removed the ability for anyone to login with a password by editing the sshd-config file at /etc/ssh/sshd_config. I set PasswordAuthentication to 'no' and then restarted the service: sudo service ssh restart
 9. Configure the local timezone to UTC: sudo timedatectl set-timezone Etc/UTC. I checked it using the 'date' command
 10. Install and configure Apache2
  - sudo apt-get install apache2
  - Tested that the web server is up and running by navigating my browser to http://35.177.47.196.xip.io/
  - sudo apt-get install libapache2-mod_wsgi
- - Edit 000-defauly.conf doc: Add 'WSGIScriptAlias / /var/www/html/stuarts-astro-page/astroapp.wsgi' before </VirtualHost>
+ - Edit 000-default.conf doc: Add 'WSGIScriptAlias / /var/www/html/stuarts-astro-page/astroapp.wsgi' before </VirtualHost>
  - restart apache: sudo apache2ctl restart
 11. Installed and configured Postgresql:
  - sudo apt-get install postgresql
@@ -64,6 +58,7 @@ Summary of steps followed
    !!!NB!!! I haven't yet limited permissions so the catalog user access only to my catalog app database
 12. Installed git: sudo apt-get install git
 13. Cloned project into the home folder of grader: git clone https://github.com/Slystu/stuarts-astro-page.git
+ - My project files are located at: var/www/html/stuarts-astro-page
  - To get my project to work I've had to install sqlalchemy: sudo apt-get install python-flask-sqlalchemy
  - install oath2: git clone https://github.com/google/oauth2client then cd oauth2client then python setup.py install
  - Install pip: sudo apt-get install python-pip
@@ -75,11 +70,18 @@ Summary of steps followed
    - now engine = create_engine('postgresql://catalog:password@localhost/catalogapp.db')
  - Install psycopg2: sudo apt-get install python-psycopg2
  - imported psycopg2 into my application.py file: import psycopg2
- - created astroapp.wsgi and imported my app as application: from application import app as application
+ - created astroapp and imported my app as application: from application import app as application
+ - Updated Google oauth Client ID:
+ - Added redirect server and new authorized javascript origin
+ - Downloaded updated client_secrets.json file and replaced the previous version
+14. Make sure that your .git directory is not publicly accessible via a browser: sudo chmod 700 .git
+
  
- Updated Google oauth Client ID:
-  - Added redirect server and new authorized javascript origin
-  - downloaded updated client_secrets.json file and replaced the previous version
+ 
+ 
+
+ 
+
 
 3rd party sources used:
 For instructions on how to change the SSH port from 22 to 2200 I used https://www.liquidweb.com/kb/changing-the-ssh-port/
@@ -94,3 +96,5 @@ Installing oauth2client https://oauth2client.readthedocs.io/en/latest/
 Installing requests: https://www.youtube.com/watch?v=weoYbFaq1-s
 installing httplib2: https://stackoverflow.com/questions/1882465/python-httplib2-module-not-found
 Editing paths in python: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder
+Removing ability to login remotely as root: https://askubuntu.com/questions/27559/how-do-i-disable-remote-ssh-login-as-root-from-a-server
+Sudo without a password: https://www.cyberciti.biz/faq/linux-unix-running-sudo-command-without-a-password/
