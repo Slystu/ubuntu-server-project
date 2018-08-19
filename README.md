@@ -9,7 +9,8 @@ URL: http://35.177.47.196.xip.io/
 Static IP address: 35.177.47.196
 SSH port: 2200
 
-Summary of steps followed
+*Summary of steps followed
+
 NB note: After weeks of trying I am unable to get the login journey to work correctly. The issue seems to be caused by this line: login_session['state'] = state. I have therefore commented out this line in var/www/html/stuarts-astro-page/application.py to at least show that the site correctly connects with Google using the correct OAuth information
 1. Set up a lightsail ubuntu serer with an IP address of 18.130.129.12
 2. I SSH'd into my new server
